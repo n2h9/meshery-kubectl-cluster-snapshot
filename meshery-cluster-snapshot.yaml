@@ -1,0 +1,44 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: meshery-cluster-snapshot
+spec:
+  version: v0.4.3
+  homepage: https://github.com/meshery/meshery
+  shortDescription: Creates a k8s cluster snapshot as a meshery design file
+  description: |
+    This plugin:
+      * temporarily deploys the meshery operator and meshery core to current k8s cluster into a separate namespace;
+      * generate  a snapshot of a cluster resources as a design file; 
+      * undeploys meshery resources.
+  caveats: |
+    * TODO
+  platforms:
+  # - selector:
+  #     matchLabels:
+  #       os: darwin
+  #       arch: amd64
+  #   uri: https://github.com/ahmetb/kubectl-tree/releases/download/v0.4.3/kubectl-tree_v0.4.3_darwin_amd64.tar.gz
+  #   sha256: ac2e509904bd2478e650609bc8f1c3a3c399e3a5502fce6041878adc15d8fbfa
+  #   bin: kubectl-tree
+  # - selector:
+  #     matchLabels:
+  #       os: darwin
+  #       arch: arm64
+  #   uri: https://github.com/ahmetb/kubectl-tree/releases/download/v0.4.3/kubectl-tree_v0.4.3_darwin_arm64.tar.gz
+  #   sha256: 17a1ff7aaf214972e9261b4d6b1ccd335175999716731592eb30a71c43ec0684
+  #   bin: kubectl-tree
+  - selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+    uri: file:///mnt/space2/code/meshery/kubectl-cluster-snapshot/bin/v0.0.1.tar.gz
+    sha256: 478adecf9d5d67c09f86713430027f0f5fc07aaa8841a85c0fe7a69fdb1c92a8
+    bin: bin/kubectl-meshery-cluster-snapshot
+  # - selector:
+  #     matchLabels:
+  #       os: windows
+  #       arch: amd64
+  #   uri: https://github.com/ahmetb/kubectl-tree/releases/download/v0.4.3/kubectl-tree_v0.4.3_windows_amd64.tar.gz
+  #   sha256: f8eb6d445c0c9843952aa65dda7072fe39e85a6adebed8b62184bb5d948c7837
+  #   bin: kubectl-tree.exe
