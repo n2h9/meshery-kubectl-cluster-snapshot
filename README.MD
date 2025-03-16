@@ -1,25 +1,19 @@
-## commands
+## yamls
+
+yamls are generated from helm charts from meshery repo
 
 ```sh
-go build -o bin/kubectl-meshery-cluster-snapshot cmd/main/main.go
+helm --namespace meshery template meshery-operator install/kubernetes/helm/meshery-operator > meshery-operator.yaml
 ```
 
 ```sh
-tar -czvf bin/v0.0.1.tar.gz bin/kubectl-meshery-cluster-snapshot
+helm --namespace meshery template meshery-core install/kubernetes/helm/meshery > meshery-core.yaml
 ```
 
-```sh
-sha256sum bin/v0.0.1.tar.gz
-```
+crds.yaml is copied from `install/kubernetes/helm/meshery-operator/crds`
 
-```sh
-kubectl krew install --manifest=meshery-cluster-snapshot.yaml --archive=bin/v0.0.1.tar.gz
-```
+For meshery core there are already k8s yamls in `install/deployment_yamls/k8s`.
 
-```sh
-kubectl meshery-cluster-snapshot
-```
+For meshery operator not.
 
-```sh
-kubectl krew uninstall meshery-cluster-snapshot
-```
+For now using generated yamls from helm.
