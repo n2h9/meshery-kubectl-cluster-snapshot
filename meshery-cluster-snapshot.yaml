@@ -33,7 +33,7 @@ spec:
         os: linux
         arch: amd64
     uri: file:///mnt/space2/code/meshery/kubectl-cluster-snapshot/bin/v0.0.1.tar.gz
-    sha256: 478adecf9d5d67c09f86713430027f0f5fc07aaa8841a85c0fe7a69fdb1c92a8
+    sha256: ae6c4250af5c42d74c12955994ae566ef13800f6f08090f1eb54e498f5613c17
     bin: bin/kubectl-meshery-cluster-snapshot
   # - selector:
   #     matchLabels:

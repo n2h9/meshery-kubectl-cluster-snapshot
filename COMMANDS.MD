@@ -1,7 +1,7 @@
 ## commands
 
 ```sh
-go build -o bin/kubectl-meshery-cluster-snapshot cmd/main/main.go
+go build -o bin/kubectl-meshery-cluster-snapshot cmd/main/*.go
 ```
 
 ```sh
