@@ -1,12 +1,16 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
-	"os/exec"
 
 	"github.com/meshery/kubectl-cluster-snapshot/internal/utils"
 	"github.com/spf13/cobra"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"sigs.k8s.io/yaml"
+
+	mesherykube "github.com/layer5io/meshkit/utils/kubernetes"
 )
 
 func main() {
@@ -19,11 +23,24 @@ func main() {
 		Short: "kubectl krew plugin to capture a cluster snapshot",
 		Long:  "",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			execCMD := exec.Command("kubectl", "--namespace", namespace, "get", "all", "-o", "yaml") // Get all pods in all namespaces
-
-			output, err := execCMD.CombinedOutput() // Capture both stdout and stderr
+			// Initialize kubeclient
+			kubeClient, err := mesherykube.New(nil)
 			if err != nil {
 				return err
+			}
+
+			list, err := kubeClient.KubeClient.CoreV1().Pods(namespace).List(
+				context.TODO(),
+				metav1.ListOptions{},
+			)
+			if err != nil {
+				return err
+			}
+			list.APIVersion = "v1"
+			list.Kind = "List"
+			for i := range list.Items {
+				list.Items[i].APIVersion = "v1"
+				list.Items[i].Kind = "Pod"
 			}
 
 			if outputFile == "" {
@@ -31,6 +48,11 @@ func main() {
 				if err != nil {
 					return err
 				}
+			}
+
+			output, err := yaml.Marshal(list)
+			if err != nil {
+				return err
 			}
 
 			err = os.WriteFile(outputFile, output, 0644)
