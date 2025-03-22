@@ -2,7 +2,7 @@
 
 kubectl krew uninstall meshery-cluster-snapshot 2>/dev/null
 
-go build -o bin/kubectl-meshery-cluster-snapshot cmd/wrap-os/*.go
+go build -o bin/kubectl-meshery-cluster-snapshot cmd/os/*.go
 
 tar -czvf bin/v0.0.1.tar.gz bin/kubectl-meshery-cluster-snapshot
 
