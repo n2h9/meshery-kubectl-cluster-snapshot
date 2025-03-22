@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kubectl krew uninstall meshery-cluster-snapshot 2>/dev/null
 
 go build -o bin/kubectl-meshery-cluster-snapshot cmd/wrap-os/*.go
