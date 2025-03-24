@@ -11,7 +11,7 @@ import (
 
 var mesheryNamespace = "meshery"
 
-func stepApplyYamls() {
+func applyResources() {
 	root := []string{"crds.yaml"}
 	namespaced := []string{"broker.yaml", "meshsync.yaml"}
 
@@ -30,6 +30,10 @@ func stepApplyYamls() {
 		}
 		applyYAMLString(content, true)
 	}
+}
+
+func deleteResources() {
+	// TODO
 }
 
 func applyYAMLString(yamlContent []byte, namespaced bool) error {
