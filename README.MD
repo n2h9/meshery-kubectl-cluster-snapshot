@@ -16,12 +16,12 @@ run
 
 ## Run plugin
 ```sh
-kubectl meshery-cluster-snapshot --meshsyncBinaryPath=/mnt/space2/code/meshery/meshsync/bin/meshsync --outputFile=meshery-cluster-snapshot-20250324-01.yaml
+kubectl meshery-cluster-snapshot --meshsyncBinaryPath=path_to_meshsync/meshsync --outputFile=meshery-cluster-snapshot-20250324-01.yaml
 ```
 
 or  from binary
 ```sh
-./bin/kubectl-meshery-cluster-snapshot --meshsyncBinaryPath=/mnt/space2/code/meshery/meshsync/bin/meshsync --outputFile=meshery-cluster-snapshot-20250324-01.yaml
+./bin/kubectl-meshery-cluster-snapshot --meshsyncBinaryPath=path_to_meshsync/meshsync --outputFile=meshery-cluster-snapshot-20250324-01.yaml
 ```
 
 meshsyncBinaryPath is mandatory for now
