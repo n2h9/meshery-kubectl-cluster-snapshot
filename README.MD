@@ -1,19 +1,29 @@
-## yamls
+## Build
 
-yamls are generated from helm charts from meshery repo
-
+run
 ```sh
-helm --namespace meshery template meshery-operator install/kubernetes/helm/meshery-operator > meshery-operator.yaml
+./install-00.sh
 ```
 
+copy the generted sha256 hash to meshery-cluster-snapshot.yaml sha256
+
+## Install krew plugi
+
+run
 ```sh
-helm --namespace meshery template meshery-core install/kubernetes/helm/meshery > meshery-core.yaml
+./install-01.sh
 ```
 
-crds.yaml is copied from `install/kubernetes/helm/meshery-operator/crds`
+## Run plugin
+```sh
+kubectl meshery-cluster-snapshot --meshsyncBinaryPath=/mnt/space2/code/meshery/meshsync/bin/meshsync --outputFile=meshery-cluster-snapshot-20250324-01.yaml
+```
 
-For meshery core there are already k8s yamls in `install/deployment_yamls/k8s`.
+or  from binary
+```sh
+./bin/kubectl-meshery-cluster-snapshot --meshsyncBinaryPath=/mnt/space2/code/meshery/meshsync/bin/meshsync --outputFile=meshery-cluster-snapshot-20250324-01.yaml
+```
 
-For meshery operator not.
-
-For now using generated yamls from helm.
+meshsyncBinaryPath is mandatory for now
+binary must be build from this branch: https://github.com/meshery/meshsync/pull/386
+(it contains output to file funcvtionality)
